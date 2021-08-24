@@ -7,7 +7,6 @@ from src.data.static_data import data
 import requests
 from dotenv import load_dotenv
 
-
 def get_random_email():
     """
     Generating an email with fixed prefix and suffix.
@@ -27,7 +26,7 @@ def generate_phon_number(country_code="880"):
 
 
 def gen_f_name():
-    return "akib"
+    return "Akib"
 
 
 def gen_l_name():
@@ -64,7 +63,15 @@ def client_auth_header():
     res.headers.update({"authorization": "Bearer "+res.json()['token']})
     return res.headers
 
+def get_random_location():
+    countries = requests.get('auth/countries/')
+    countries_id = []
+    for country in countries:
+        countries_id.append(country['id'])
+    random_country_id = random.choice(countries_id)
+    cities = requests.get(f"auth/cities/?country={random_country_id}")
+    print(cities)
 
 
 if __name__ == "__main__":
-    print(client_auth_header())
+    get_random_location()

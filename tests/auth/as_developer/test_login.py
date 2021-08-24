@@ -8,13 +8,13 @@ def test_login():
     and returned same user data point
     :return:
     """
-    mail = data['client_user']['email']
+    mail = data['dev_user']['email']
     payload = {
         "email": mail,
-        "password": data['client_user']['password']
+        "password": data['dev_user']['password']
     }
     r = RequestsUtility()
     res = r.post("auth/token/", payload=payload)
     print(res)
-    assert res['user']['role'] == "client", "Client role does not match"
+    assert res['user']['role'] == "talent", "Developer does not match"
     assert res['user']['email'] == mail, f"Expected user mail is not found on response"

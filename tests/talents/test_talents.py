@@ -1,12 +1,12 @@
 from src.utilities.request_utility import RequestsUtility
-from src.utilities.general import dev_auth_header
 
 
-def test_talents_list():
-    """
-    :return:
-    get talents list
-    """
-    s = dev_auth_header()
-    r = RequestsUtility().get("jobs/get_talent_jobs/", headers=s)
-    assert len(r['results']) > 0
+def test_talent_profile(get_client_auth):
+    r = RequestsUtility()
+    res = r.get("clients/list_analytics/", headers=get_client_auth)
+    dev_list = res['recommended_talents']
+    print(dev_list)
+    # assert len(dev_list) > 0,"Recomonded talants return zero list"
+    res = r.get(f"talents/112", headers=get_client_auth)  # here have to choose talants randomly from the talents list
+    print(res)
+    assert res['role'] == 'talent'
