@@ -16,14 +16,15 @@ class RequestsUtility(object):
                                                               f"Expected {self.expected_status_code}, Actual status code: {self.status_code}," \
                                                               f"URL: {self.url}, Response Json: {self.rs_json}"
 
-    def post(self, endpoint, payload=None, headers=None, params=None,expected_status_code=200):
+    def post(self, endpoint, payload=None, headers=None,expected_status_code=200,json_type=True):
 
         if not headers:
             headers = {"Content-Type": "application/json", "accept": "application/json"}
 
         self.url = self.base_url + endpoint
-
-        rs_api = requests.post(url=self.url, data=json.dumps(payload), headers=headers)
+        if json_type:
+            payload = json.dumps(payload)
+        rs_api = requests.post(url=self.url, data=payload, headers=headers)
         self.status_code = rs_api.status_code
         self.expected_status_code = expected_status_code
         self.rs_json = rs_api.json()

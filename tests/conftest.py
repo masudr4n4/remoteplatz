@@ -20,12 +20,12 @@ def get_dev_auth():
 
 
 
-@pytest.fixture(scope='function')
-def practice_fix(request):
-    print("\nCalling fixture1")
-    print(dir(request),2)
-    print(request.node.name)
-    print(request.node.nodeid)
-    print('test status',request.session.testsfailed)
-    yield "\nYield return from fixture4"
-    print(request.session.testsfailed)
+# @pytest.fixture(scope='function')
+# def practice_fix(request):
+#     print("\nCalling fixture1")
+#     print(dir(request),2)
+#     print(request.node.name)
+#     print(request.node.nodeid)
+#     print('test status',request.session.testsfailed)
+#     yield "\nYield return from fixture4"
+#     print(request.session.testsfailed)
