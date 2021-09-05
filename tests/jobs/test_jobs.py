@@ -32,6 +32,7 @@ def test_create_job(get_client_auth):
     }
     r = RequestsUtility()
     res = r.post('jobs/', payload=payload, headers=get_client_auth)
+    print(res)
     print(f"Massage:{res['message']},title:{res['Job']['title']}")
     assert res['message'] == "Job created"
 
@@ -53,7 +54,7 @@ def test_apply_job(get_client_auth, get_dev_auth):
     }
     r = RequestsUtility()
     res = r.post('jobs/', payload=payload, headers=get_client_auth)
-    print(res)
+    # print(res)
     print(f"Massage:{res['message']},title:{res['Job']['title']}")
     assert res['message'] == "Job created"
     apply_payload = {
@@ -64,10 +65,11 @@ def test_apply_job(get_client_auth, get_dev_auth):
 
 
 def test_job_details(get_client_auth):
-    job_id = 36
+    job_id = 45
     r = RequestsUtility()
     res = r.get(f"jobs/{job_id}", headers=get_client_auth)
     print(f"\nid:{res['id']},title:{res['title']}")
+    # print(res)
     assert res['id'] == job_id, "Job id not matching"
 
 

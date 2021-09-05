@@ -15,6 +15,6 @@ def test_login():
     }
     r = RequestsUtility()
     res = r.post("auth/token/", payload=payload)
-    print(res)
+    print(f" Email: {res['user']['email']} Id: {res['user']['id']}")
     assert res['user']['role'] == "talent", "Developer does not match"
     assert res['user']['email'] == mail, f"Expected user mail is not found on response"
