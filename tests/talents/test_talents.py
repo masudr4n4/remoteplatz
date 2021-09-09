@@ -5,11 +5,12 @@ tech_ids = [46, 47, 55, 58]
 
 
 def test_talent_profile(get_client_auth):
+    talent_id = 112
     r = RequestsUtility()
     res = r.get("clients/list_analytics/", headers=get_client_auth)
     dev_list = res['recommended_talents']
     # assert len(dev_list) > 0,"Recomonded talants return zero list"
-    res = r.get(f"talents/112", headers=get_client_auth)  # here have to choose talants randomly from the talents list
+    res = r.get(f"talents/{talent_id}", headers=get_client_auth)  # here have to choose talants randomly from the talents list
     print(f"User email:{res['email']},user id:{res['id']}")
     assert res['role'] == 'talent'
 
