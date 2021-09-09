@@ -24,3 +24,14 @@ def test_talant_search(get_client_auth, tech_id):
     assert res['count'] > 0
     assert res.__contains__('results')
     print(f"Total talents returned {len(res['results'])}")
+
+
+def test_techno_list():
+    r = RequestsUtility()
+    res = r.get("talents/technology/")
+    print(res[0])
+    assert len(res) > 0
+    assert res[0].__contains__('id')
+    assert res[0].__contains__('name')
+    assert res[0].__contains__('type')
+
