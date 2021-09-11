@@ -23,3 +23,9 @@ covered Area:<br>
 * talents/{talent_id}
 * talents/?technologies={tech_id}
 * talents/technology/ (tech list) 
+* notifications/ 
+
+
+down:
+setting page
+notification page
