@@ -63,6 +63,7 @@ def client_auth_header():
     res.headers.update({"authorization": "Bearer "+res.json()['token']})
     return res.headers
 
+
 def get_random_location():
     countries = requests.get('auth/countries/')
     countries_id = []
@@ -70,8 +71,13 @@ def get_random_location():
         countries_id.append(country['id'])
     random_country_id = random.choice(countries_id)
     cities = requests.get(f"auth/cities/?country={random_country_id}")
-    print(cities)
+    return cities
 
+
+def get_random_string():
+    st =  "".join(random.choice(string.ascii_lowercase) for i in range(6))
+    print(st)
+    return st
 
 if __name__ == "__main__":
     get_random_location()

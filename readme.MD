@@ -24,6 +24,7 @@ covered Area:<br>
 * talents/?technologies={tech_id}
 * talents/technology/ (tech list) 
 * notifications/ 
+* talents/update_my_profile/
 
 
 down:
