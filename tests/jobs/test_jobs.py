@@ -1,7 +1,7 @@
 from src.utilities.request_utility import RequestsUtility
 from src.utilities.general import dev_auth_header
 import random
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 
 
 def test_talents_job_list():
@@ -32,9 +32,42 @@ def test_create_job(get_client_auth):
     }
     r = RequestsUtility()
     res = r.post('jobs/', payload=payload, headers=get_client_auth)
-    print(res)
-    print(f"Massage:{res['message']},title:{res['Job']['title']}")
+    print(f"Massage:{res['message']},job id: {res['Job']['id']} ,title:{res['Job']['title']}")
     assert res['message'] == "Job created"
+
+
+def test_pause_active_delete_job(get_client_auth):
+    data = {
+        "title": f"QA Automation #{str(random.randint(1000, 2000))}",
+        "salary": str(random.randint(100, 200)),
+        "country_id": 271,  # Bangladesh
+        "city_id": 563,
+        "requirements": "Testing automated job description here.",
+        "currency": "dollar",
+        "flexibility": None,
+        "job_type": "40hr/week",
+        "technologies": [55],
+        "timezone": "Asia/Dushanbe",
+        "urgency": "ASAP",
+        "client": 102
+    }
+    r = RequestsUtility()
+    res = r.post('jobs/', payload=data, headers=get_client_auth)
+    job_id = res['Job']['id']
+    pause = {'status':'paused'}
+    active = {'status':'active'}
+    res = r.patch(f"jobs/{job_id}/", payload=pause, headers=get_client_auth, json=False)
+    assert res['job']['id'] == job_id,"Job id does not match with created one."
+    assert res['job']['status'] == 'paused'
+    assert res['message'] == 'Updated job'
+    print(f"job id: {res['job']['id']}, Title: {res['job']['title']},Job Status now: {res['job']['status']}")
+    res = r.patch(f"jobs/{job_id}/", payload=active, headers=get_client_auth, json=False)
+    assert res['job']['id'] == job_id,"Job id does not match with created one."
+    assert res['job']['status'] == 'active'
+    assert res['message'] == 'Updated job'
+    print(f"job id: {res['job']['id']}, Title: {res['job']['title']},Job Status now: {res['job']['status']}")
+    r.delete(f"jobs/{job_id}/", headers=get_client_auth, json_type=False,expected_status_code=204)
+    print('Deleted the post succesfully')
 
 
 def test_apply_job(get_client_auth, get_dev_auth):
