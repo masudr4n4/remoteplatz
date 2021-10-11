@@ -18,6 +18,8 @@ def get_random_email():
     logger.info(f"Generated Email address: {email}")
     return email
 
+def get_random_string(lenght=5):
+    return "".join(random.choice(string.ascii_lowercase) for i in range(lenght))
 
 def generate_phon_number(country_code="880"):
     num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -74,4 +76,4 @@ def get_random_location():
 
 
 if __name__ == "__main__":
-    get_random_location()
+    dev_auth_header()

@@ -48,6 +48,21 @@ class RequestsUtility(object):
 
         return self.rs_json
 
+    def patch(self, endpoint, payload=None, headers=None, expected_status_code=200, json_type=True):
+
+        if not headers:
+            headers = {"Content-Type": "application/json", "accept": "application/json"}
+
+        self.url = self.base_url + endpoint
+        if json_type:
+            payload = json.dumps(payload)
+        rs_api = requests.patch(url=self.url, data=payload, headers=headers)
+        self.status_code = rs_api.status_code
+        self.expected_status_code = expected_status_code
+        self.rs_json = rs_api.json()
+        self.assert_status_code()
+        logger.debug(f"POST API response: {self.rs_json}")
+        return self.rs_json
 
 if __name__ == '__main__':
     r = RequestsUtility()

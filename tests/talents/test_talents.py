@@ -5,7 +5,7 @@ tech_ids = [46, 47, 55, 58]
 
 
 def test_talent_profile(get_client_auth):
-    talent_id = 112
+    talent_id = 2131
     r = RequestsUtility()
     res = r.get("clients/list_analytics/", headers=get_client_auth)
     dev_list = res['recommended_talents']
@@ -34,4 +34,3 @@ def test_techno_list():
     assert res[0].__contains__('id')
     assert res[0].__contains__('name')
     assert res[0].__contains__('type')
-

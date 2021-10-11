@@ -1,7 +1,7 @@
 from src.utilities.request_utility import RequestsUtility
 from src.utilities.general import dev_auth_header
 import random
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 
 
 def test_talents_job_list():
@@ -16,6 +16,9 @@ def test_talents_job_list():
 
 
 def test_create_job(get_client_auth):
+    """
+    IF this test case fail then make sure the client id is correct.
+    """
     payload = {
         "title": f"QA Automation #{str(random.randint(1000, 2000))}",
         "salary": str(random.randint(100, 200)),
@@ -28,7 +31,7 @@ def test_create_job(get_client_auth):
         "technologies": [55],
         "timezone": "Asia/Dushanbe",
         "urgency": "ASAP",
-        "client": 102
+        "client": 2150
     }
     r = RequestsUtility()
     res = r.post('jobs/', payload=payload, headers=get_client_auth)
@@ -38,6 +41,9 @@ def test_create_job(get_client_auth):
 
 
 def test_apply_job(get_client_auth, get_dev_auth):
+    """
+        IF this test case fail then make sure the client id is correct.
+    """
     payload = {
         "title": f"QA Automation #{str(random.randint(1000, 2000))}",
         "salary": str(random.randint(100, 200)),
@@ -50,7 +56,7 @@ def test_apply_job(get_client_auth, get_dev_auth):
         "technologies": [55],
         "timezone": "Asia/Dushanbe",
         "urgency": "ASAP",
-        "client": 102
+        "client": 2150
     }
     r = RequestsUtility()
     res = r.post('jobs/', payload=payload, headers=get_client_auth)
@@ -65,7 +71,7 @@ def test_apply_job(get_client_auth, get_dev_auth):
 
 
 def test_job_details(get_client_auth):
-    job_id = 45
+    job_id = 230
     r = RequestsUtility()
     res = r.get(f"jobs/{job_id}", headers=get_client_auth)
     print(f"\nid:{res['id']},title:{res['title']}")
