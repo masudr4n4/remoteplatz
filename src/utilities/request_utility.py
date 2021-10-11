@@ -64,6 +64,21 @@ class RequestsUtility(object):
         logger.debug(f"POST API response: {self.rs_json}")
         return self.rs_json
 
+
+    def delete(self,endpoint,payload=None,headers=None,json_type=True,expected_status_code=200):
+        self.url = self.base_url + endpoint
+        if not headers:
+            headers= {"Content-Type": "application/json"}
+        if json_type:
+            payload=json.dumps(payload)
+        rs_api = requests.delete(url=self.url, data=payload, headers=headers)
+        self.status_code = rs_api.status_code
+        self.expected_status_code = expected_status_code
+        # self.rs_json = rs_api.json()
+        self.assert_status_code()
+
+
+
 if __name__ == '__main__':
     r = RequestsUtility()
     country_id = 227

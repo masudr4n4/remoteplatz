@@ -18,12 +18,15 @@ covered Area:<br>
 * jobs/ (create job)
 * jobs/applications/ (apply job)
 * jobs/{job_id} (job details)
+* jobs/{id} (pause and activate ,change status)  
 * jobs/get_client_jobs/
 * invitations/
 * talents/{talent_id}
 * talents/?technologies={tech_id}
-* talents/technology/ (tech list) 
+* talents/technology/ (tech list)
+* talents/update_my_profile/  
 * notifications/ 
+
 
 
 down:

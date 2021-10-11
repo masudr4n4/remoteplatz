@@ -1,7 +1,6 @@
 from src.utilities.request_utility import RequestsUtility
 from src.utilities.general import get_random_string
 
-
 def test_update_profile(get_dev_auth):
     data = {
         'id': 2131,
