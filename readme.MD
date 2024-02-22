@@ -28,7 +28,9 @@ covered Area:<br>
 * notifications/ 
 
 
-
 down:
 setting page
 notification page
+
+
+<img src="https://github.com/masudr4n4/remoteplatz/blob/master/API%20Pytest.png"/>
