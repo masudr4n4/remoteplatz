@@ -34,3 +34,6 @@ notification page
 
 
 <img src="https://github.com/masudr4n4/remoteplatz/blob/master/API%20Pytest.png"/>
+
+
+Live Reports can be found here: https://masudr4n4.github.io/remoteplatz/
